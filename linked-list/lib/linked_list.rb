@@ -45,12 +45,12 @@ class LinkedList
 
   def size
     size = 0
-    each { |_, _| size += 1 }
+    each { |_| size += 1 }
     size
   end
 
   def at(index)
-    each_with_index { |node, idx| return node.value if index.eql?(idx) }
+    each_with_index { |node, idx| return node if index.eql?(idx) }
     nil
   end
 
@@ -71,6 +71,29 @@ class LinkedList
   def find(value)
     each_with_index { |node, idx| return idx if node.value.eql?(value) }
     nil
+  end
+
+  def insert_at(value, index)
+    each_with_index do |node, idx|
+      next unless idx.eql?(index)
+
+      previous_node = at(idx - 1)
+      new_node = Node.new(value)
+
+      # Updating node links
+      new_node.next_node = node
+      previous_node.next_node = new_node
+    end
+  end
+
+  def remove_at(index)
+    each_with_index do |node, idx|
+      next unless idx.eql?(index)
+
+      previous_node = at(idx - 1)
+      # Updating node links
+      previous_node.next_node = node.next_node
+    end
   end
 
   def to_s

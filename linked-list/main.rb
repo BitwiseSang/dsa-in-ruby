@@ -33,7 +33,7 @@ puts "\nThe linked list is of size: #{list.size}"
 
 # #at(index) method for finding the value at a specific index
 list.size.times do |index|
-  puts list.at(index)
+  puts list.at(index).value
 end
 
 puts list.at(10) # returns nil if index is out of range
@@ -54,3 +54,16 @@ list.to_s
 puts ''
 puts list.contains?('Once')
 puts list.contains?('time...')
+
+# #insert_at(value, index) method
+list.append('time')
+list.append('in')
+list.append('a')
+list.append('village')
+list.insert_at('long', 3)
+list.insert_at('long', 3)
+list.to_s
+
+# #remove_at(index)
+list.remove_at(3)
+list.to_s
