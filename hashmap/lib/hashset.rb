@@ -1,8 +1,8 @@
 require_relative '../../linked-list/lib/linked_list'
 require_relative '../../linked-list/lib/node'
 
-# Hashmap class
-class HashMap
+# Hashset class
+class HashSet
   attr_reader :capacity
 
   def initialize
@@ -25,6 +25,17 @@ class HashMap
     @capacity *= 2
   end
 
+  def has?(value)
+    @bucket.each do |entry|
+      if entry.instance_of?(LinkedList)
+        return true if entry.contains?(value)
+      elsif entry.eql?(value)
+        return true
+      end
+    end
+    false
+  end
+
   def hash(key)
     hash_code = 0
     prime_number = 31
@@ -40,8 +51,10 @@ class HashMap
     @bucket[hash_code].append(value)
   end
 
-  def set(key, value)
-    hash_code = hash(key)
+  def set(value)
+    return if has?(value)
+
+    hash_code = hash(value)
     return IndexError if hash_code.negative? || hash_code > @capacity
 
     if @bucket[hash_code].nil?
@@ -58,7 +71,7 @@ class HashMap
     @bucket[hash_code]
   end
 
-  def has?(key)
+  def includes?(key)
     hash_code = hash(key)
     return true if @bucket[hash_code]
 
