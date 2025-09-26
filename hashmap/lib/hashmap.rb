@@ -33,11 +33,11 @@ class HashMap
   end
 
   def linked_list_entry(hash_code, value)
-    if @bucket[hash_code].instance_of? LinkedList
-      @bucket[hash_code].append(value)
-    else
-      @bucket[hash_code] = LinkedList.new(Node.new(value))
+    unless @bucket[hash_code].instance_of?(LinkedList)
+      current_value = @bucket[hash_code]
+      @bucket[hash_code] = LinkedList.new(Node.new(current_value))
     end
+    @bucket[hash_code].append(value)
   end
 
   def set(key, value)
