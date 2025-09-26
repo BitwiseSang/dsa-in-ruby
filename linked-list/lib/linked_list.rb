@@ -8,8 +8,6 @@ class LinkedList
     @head = head
   end
 
-  private
-
   def each(node = @head, &block)
     return if node.nil?
 
@@ -24,8 +22,6 @@ class LinkedList
       index += 1
     end
   end
-
-  public
 
   def append(value)
     if @tail.nil?
