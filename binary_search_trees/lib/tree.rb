@@ -127,7 +127,7 @@ class Tree
   end
 
   def depth(value, node = @root)
-    return 0 if node.nil?
+    return nil if node.nil?
 
     if node.data == value
       0

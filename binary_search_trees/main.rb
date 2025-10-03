@@ -72,7 +72,8 @@ puts 'Finding the depth of random nodes'
 puts '---------------'
 50.times do
   random = random_number
-  puts "The depth of #{random} is #{bst.depth(random)}"
+  depth = bst.depth(random)
+  puts "The depth of #{random} is #{depth.nil? ? 'not found' : depth}"
 end
 
 puts '---------------'
@@ -80,7 +81,8 @@ puts 'Finding the height of random nodes'
 puts '---------------'
 50.times do
   random = random_number
-  puts "The height of #{random} is #{bst.height(random).nil? ? 'not found' : bst.height(random)}"
+  height = bst.height(random)
+  puts "The height of #{random} is #{height.nil? ? 'not found' : height}"
 end
 
 puts "--------------------\n"
