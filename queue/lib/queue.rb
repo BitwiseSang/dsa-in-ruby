@@ -20,6 +20,10 @@ class Queue
     @queue.size
   end
 
+  def empty?
+    @queue.empty?
+  end
+
   def to_s
     print @queue
   end
