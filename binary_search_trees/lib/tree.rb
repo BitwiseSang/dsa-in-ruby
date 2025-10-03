@@ -1,4 +1,5 @@
 require_relative 'node'
+require_relative '../../queue/lib/queue'
 
 # Binary Search Tree
 class Tree
@@ -85,21 +86,23 @@ class Tree
   def iterative_level_order(node = @root)
     return if node.nil?
 
-    queue = []
-    queue.push(node)
+    queue = Queue.new
+    queue.enqueue(node)
     until queue.empty?
-      current = queue.first
-      queue.push(current.left) unless current.left.nil?
-      queue.push(current.right) unless current.right.nil?
+      current = queue.dequeue
+      queue.enqueue(current.left) unless current.left.nil?
+      queue.enqueue(current.right) unless current.right.nil?
       yield(current)
-      queue.delete_at(0)
     end
   end
 
-  def recursive_level_order(node = @root, &block)
+  def recursive_level_order(node = @root, queue = Queue.new, &block)
     return if node.nil?
 
     yield(node)
+    queue.enqueue(node.left) unless node.left.nil?
+    queue.enqueue(node.right) unless node.right.nil?
+    recursive_level_order(queue.dequeue, queue, &block)
   end
 
   def preorder(node = @root, &block)

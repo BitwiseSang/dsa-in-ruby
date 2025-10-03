@@ -34,10 +34,20 @@ puts "Finding 8 random items: \n"
 end
 
 puts "--------------------\n"
-puts 'Using Breadth-first-search to iterate over the values'
-values = []
-bst.iterative_level_order { |node| values << node.data }
-puts "The array contains: #{values}"
+puts 'Using Iterative Breadth-first-search to iterate over the values'
+iterative_bfs = []
+bst.iterative_level_order { |node| iterative_bfs << node.data }
+puts "The array contains: #{iterative_bfs}"
+
+puts "--------------------\n"
+puts 'Using Recursive Breadth-first-search to iterate over the values'
+recursive_bfs = []
+bst.iterative_level_order { |node| recursive_bfs << node.data }
+puts "The array contains: #{recursive_bfs}"
+
+puts "--------------------\n"
+puts "Do both the iterative and recursive approaches to BFS give the same answer?\n
+#{iterative_bfs == recursive_bfs ? 'YES' : 'NO'}"
 
 puts "--------------------\n"
 puts 'Using Depth-first-search to iterate over the values'
